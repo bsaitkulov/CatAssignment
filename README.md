@@ -1,10 +1,15 @@
+# **Note:** 
+Based on observations, when creating a new vote using POST, the response status code is 201 instead of 200. 
+
+Additionally, when the vote is deleted, the response body indicates "NOT_FOUND" without the field "message" and field "status".
+
 # CatAPI Assignment 
 
 Welcome to CatAPI BDD project using Cucumber!
 
 ## Tech Stack: 
 
-`Java 11` `Maven 3.9.1` `JUnit 5.9.2` `Cucumber-Java 7.11.2` `Rest Assured 5.3.0` `Logback 1.4.5` `Lombok 1.18.26`
+`Java 11` `Maven 3.9.1` `JUnit 5.9.2` `Cucumber-Java 7.11.2` `Rest Assured 5.3.0` `Logback 1.4.5` `Lombok 1.18.26` `Cucumber report`
 
 ## Installation
 
@@ -23,25 +28,14 @@ Welcome to CatAPI BDD project using Cucumber!
 
 ## Running Tests
 
-To run the tests and generate the Serenity report, use the following command:
+To run the tests and generate the Cucumber report, use the following command:
 
     mvn clean verify
 
-The tests will be executed in parallel and the Serenity HTML report will be generated in the `target/site/serenity` directory.
-
-## Additional Commands
-- To generate only the Serenity report, use: 
-
-     
-    mvn serenity:aggregate
-
-- To run tests without generating Serenity report, use:
-
-    
-    mvn clean test
+The tests will be executed and the Cucumber HTML report will be generated in the `target/CucumberReport/cucumber-html-reports` directory.
 
 ## Writing new Tests 
-To write new tests for AQA Assignment V2 using Cucumber, follow these guidelines:
+To write new tests for CatAPI Assignment  using Cucumber, follow these guidelines:
 
 1. Navigate to `src/test/resources`
 2. Create a new directory for features files.
@@ -115,7 +109,7 @@ After running the GitLab CI/CD pipeline, you can access the HTML test reports to
 4. Find the `test` job you want to view the reports for.
 5. Click on the "artifacts.zip" link to download the artifacts.
 6. Extract the downloaded files to access the HTML reports.
-7. Search for `index.html` to view the test results.
+7. Search for `report-feature_file...` to view the test results.
 
 Please note that the exact steps and appearance may vary depending on your GitLab version and configuration.
 
