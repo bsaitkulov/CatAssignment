@@ -1,0 +1,20 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  tags:
+    - api-tests
+  script:
+    - ./mvnw install
+
+test:
+  stage: test
+  tags:
+    - api-tests
+  script:
+    - ./mvnw clean verify
+  artifacts:
+    paths:
+      - target/CucumberReport/cucumber-html-reports
