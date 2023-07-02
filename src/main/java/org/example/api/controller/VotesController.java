@@ -41,7 +41,6 @@ public class VotesController {
                 .contentType(ContentType.JSON)
                 .body(body)
                 .post(endpoint);
-
     }
 
     public Response delete(String endpoint){
