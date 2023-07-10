@@ -3,12 +3,14 @@ stages:
   - build
   - test
   - notify
+
 build:
   stage: build
   tags:
     - api-tests
   script:
     - ./mvnw install
+
 test:
   stage: test
   tags:
@@ -18,10 +20,13 @@ test:
   artifacts:
     paths:
       - target/CucumberReport/cucumber-html-reports
+
 telegram:
   stage: notify
   image: curlimages/curl:latest
   script:
+    - echo "TELEGRAM_BOT_TOKEN: $TELEGRAM_BOT_TOKEN"
+    - echo "TELEGRAM_CHAT_ID: $TELEGRAM_CHAT_ID"
     - 'curl -s --request POST --url
       "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" --header
       "Content-Type: application/json" --data-raw
