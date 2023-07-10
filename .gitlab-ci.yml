@@ -1,14 +1,14 @@
+---
 stages:
   - build
   - test
-
+  - notify
 build:
   stage: build
   tags:
     - api-tests
   script:
     - ./mvnw install
-
 test:
   stage: test
   tags:
@@ -18,3 +18,13 @@ test:
   artifacts:
     paths:
       - target/CucumberReport/cucumber-html-reports
+telegram:
+  stage: notify
+  image: curlimages/curl:latest
+  script:
+    - 'curl -s --request POST --url
+      "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" --header
+      "Content-Type: application/json" --data-raw
+      "{\"chat_id\":\"$TELEGRAM_CHAT_ID\",\"text\":\"GitLab CI/CD pipeline
+      $CI_PIPELINE_ID for $CI_PROJECT_PATH has $CI_COMMIT_SHA status
+      $CI_JOB_STATUS.\",\"disable_notification\": false}"'
