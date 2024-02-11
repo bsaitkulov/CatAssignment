@@ -22,7 +22,7 @@ Welcome to CatAPI BDD project using Cucumber!
 
 3. Install project dependencies:
   
-    
+    ```bash
     mvn install
 
 
